@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CineVerse 🎬</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0b16;
+            color: white;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            background: #151525;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px #000;
+        }
+
+        nav h2 {
+            color: #ffcc00;
+            font-size: 27px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            padding: 50px 8%;
+            background:
+                linear-gradient(90deg, #080812, rgba(8,8,18,0.6)),
+                linear-gradient(135deg, #301934, #101025);
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #ffcc00;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #dddddd;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #111;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: white;
+        }
+
+        /* SEARCH */
+
+        .search-section {
+            padding: 40px 8%;
+            text-align: center;
+        }
+
+        .search-section h2 {
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        #searchBox {
+            width: 80%;
+            max-width: 600px;
+            padding: 16px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 60px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            color: #ffcc00;
+        }
+
+        .section-title p {
+            margin-top: 10px;
+            color: #bbb;
+        }
+
+        /* MOVIE CARDS */
+
+        .movies {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .movie {
+            width: 230px;
+            background: #171725;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px #000;
+            transition: 0.3s;
+        }
+
+        .movie:hover {
+            transform: translateY(-10px);
+        }
+
+        .poster {
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 80px;
+            background: linear-gradient(135deg, #442266, #151525);
+        }
+
+        .movie-info {
+            padding: 20px;
+        }
+
+        .movie-info h3 {
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .movie-info p {
+            color: #aaa;
+            margin: 7px 0;
+        }
+
+        .rating {
+            color: #ffcc00 !important;
+            font-weight: bold;
+        }
+
+        .watch {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 9px 18px;
+            border-radius: 20px;
+            background: #ffcc00;
+            color: #111;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* CONTACT */
+
+        #contact {
+            background: #11111f;
+        }
+
+        .contact-box {
+            max-width: 500px;
+            margin: auto;
+            background: #191927;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .contact-box textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .contact-box button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 25px;
+            background: #ffcc00;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .contact-box button:hover {
+            background: white;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #08080f;
+            color: #aaa;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            #searchBox {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <h2>🎬 CineVerse</h2>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#movies">Movies</a></li>
+            <li><a href="#popular">Popular</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Welcome to <span>CineVerse</span> 🎬
+            </h1>
+
+            <p>
+                Discover exciting movies, explore popular titles,
+                find your favorite genres and enjoy your movie journey.
+            </p>
+
+            <a href="#movies" class="btn">
+                Explore Movies 🍿
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-section">
+
+        <h2>🔍 Search Movies</h2>
+
+        <input
+            type="text"
+            id="searchBox"
+            placeholder="Search for a movie..."
+            onkeyup="searchMovies()"
+        >
+
+    </div>
+
+
+    <!-- MOVIES -->
+
+    <section id="movies">
+
+        <div class="section-title">
+
+            <h2>🎥 Latest Movies</h2>
+
+            <p>
+                Explore our collection of movies.
+            </p>
+
+        </div>
+
+
+        <div class="movies" id="movieList">
+
+
+            <div class="movie">
+
+                <div class="poster">
+                    🦸
+                </div>
+
+                <div class="movie-info">
+
+                    <h3>Super Hero</h3>
+
+                    <p>Action • Adventure</p>
+
+                    <p class="rating">
+                        ⭐ 8.7/10
+                    </p>
+
+                    <a href="#" class="watch">
+                        Details
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="movie">
+
+                <div class="poster">
+                    🚀
+                </div>
+
+                <div class="movie-info">
+
+                    <h3>Space Journey</h3>
+
+                    <p>Sci-Fi • Adventure</p>
+
+                    <p class="rating">
+                        ⭐ 8.4/10
+                    </p>
+
+                    <a href="#" class="watch">
+                        Details
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="movie">
+
+                <div class="poster">
+                    🕵️
+                </div>
+
+                <div class="movie-info">
+
+                    <h3>Mystery Night</h3>
+
+                    <p>Mystery • Thriller</p>
+
+                    <p class="rating">
+                        ⭐ 8.1/10
+                    </p>
+
+                    <a href="#" class="watch">
+                        Details
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="movie">
+
+                <div class="poster">
+                    🧙
+                </div>
+
+                <div class="movie-info">
+
+                    <h3>Magic World</h3>
+
+                    <p>Fantasy • Adventure</p>
+
+                    <p class="rating">
+                        ⭐ 9.0/10
+                    </p>
+
+                    <a href="#" class="watch">
+                        Details
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="movie">
+
+                <div class="poster">
+                    🤖
+                </div>
+
+                <div class="movie-info">
+
+                    <h3>Future AI</h3>
+
+                    <p>Sci-Fi • Technology</p>
+
+                    <p class="rating">
+                        ⭐ 8.8/10
+                    </p>
+
+                    <a href="#" class="watch">
+                        Details
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="movie">
+
+                <div class="poster">
+                    🏎️
+                </div>
+
+                <div class="movie-info">
+
+                    <h3>Speed Racer</h3>
+
+                    <p>Action • Racing</p>
+
+                    <p class="rating">
+                        ⭐ 8.2/10
+                    </p>
+
+                    <a href="#" class="watch">
+                        Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- POPULAR -->
+
+    <section id="popular">
+
+        <div class="section-title">
+
+            <h2>🔥 Popular Categories</h2>
+
+            <p>
+                Choose your favorite movie genre.
+            </p>
+
+        </div>
+
+
+        <div class="cards movies">
+
+            <div class="movie">
+                <div class="poster">💥</div>
+                <div class="movie-info">
+                    <h3>Action</h3>
+                    <p>Exciting action movies.</p>
+                </div>
+            </div>
+
+            <div class="movie">
+                <div class="poster">❤️</div>
+                <div class="movie-info">
+                    <h3>Romance</h3>
+                    <p>Beautiful romantic stories.</p>
+                </div>
+            </div>
+
+            <div class="movie">
+                <div class="poster">😂</div>
+                <div class="movie-info">
+                    <h3>Comedy</h3>
+                    <p>Movies full of laughter.</p>
+                </div>
+            </div>
+
+            <div class="movie">
+                <div class="poster">👻</div>
+                <div class="movie-info">
+                    <h3>Horror</h3>
+                    <p>Thrilling horror experiences.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="section-title">
+
+            <h2>📩 Contact Us</h2>
+
+            <p>
+                Have a suggestion? Send us a message.
+            </p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <form onsubmit="sendMessage(event)">
+
+                <input
+                    type="text"
+                    placeholder="Your Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    placeholder="Your Email"
+                    required
+                >
+
+                <textarea
+                    placeholder="Your Message"
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Send Message 🎬
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            🎬 CineVerse © 2026
+        </p>
+
+        <p>
+            Discover • Explore • Enjoy 🍿
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function searchMovies() {
+
+            let input =
+                document.getElementById("searchBox")
+                .value
+                .toLowerCase();
+
+            let movies =
+                document.querySelectorAll(".movie");
+
+            movies.forEach(function(movie) {
+
+                let title =
+                    movie.innerText.toLowerCase();
+
+                if (title.includes(input)) {
+
+                    movie.style.display = "block";
+
+                } else {
+
+                    movie.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        function sendMessage(event) {
+
+            event.preventDefault();
+
+            alert(
+                "🎬 Thank you! Your message has been submitted."
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
